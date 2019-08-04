@@ -20,5 +20,5 @@
     - calvinbui.ansible_docker_network
     - calvinbui.ansible_nfs_client
     - calvinbui.ansible_traefik
-    - calvinbui.ansible_bitwardenrs_docker
+    - calvinbui.ansible_resiliosync_docker
     - calvinbui.ansible_datadog
