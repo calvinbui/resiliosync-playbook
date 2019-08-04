@@ -1,0 +1,30 @@
+---
+
+resiliosync_name: resiliosync
+resiliosync_image: linuxserver/resilio-sync
+resiliosync_ports:
+  - 8888:8888
+  - 55555:55555
+resiliosync_volumes:
+  - "{{ common_directory_config }}/resiliosync/config:/config"
+  - "{{ common_directory_config }}/resiliosync/downloads:/downloads"
+  - "{{ common_directory_nfs }}/Photos:/sync/Photos"
+  - "{{ common_directory_nfs }}/Sync:/sync/Sync"
+resiliosync_environment_variables:
+  PUID: "{{ common_user_id }}"
+  PGID: "{{ common_group_id }}"
+  TZ: "Australia/Sydney"
+
+resiliosync_docker_additional_options:
+  restart_policy: unless-stopped
+  labels:
+    traefik.web.frontend.rule: "Host:{{ common_tld }}"
+    traefik.web.port: "8888"
+    traefik.sync.frontend.rule: "Host:{{ common_tld }}"
+    traefik.sync.port: "55555"
+    # HSTS
+    traefik.frontend.headers.STSSeconds: "31536000"
+    traefik.frontend.headers.STSIncludeSubdomains: "true"
+    traefik.frontend.headers.STSPreload: "true"
+  comparisons:
+    "labels": "strict"

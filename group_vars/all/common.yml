@@ -1,0 +1,10 @@
+---
+# this is for variables that will be reused
+
+common_user: "calvin"
+common_group: "calvin"
+common_user_id: "1000" # calvin
+common_group_id: "1000" # calvin
+common_directory_config: "/resiliosync"
+common_directory_nfs: "/mnt/files"
+common_tld: "{{ sync_domain }}"
